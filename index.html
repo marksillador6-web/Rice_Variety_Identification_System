@@ -17,7 +17,15 @@
   --red:#b91c1c;
   --yellow:#a16207;
 }
+
 *{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+/* IMPORTANT FIX: HIDE ELEMENTS PROPERLY */
+[hidden]{
+  display:none!important;
+}
 
 body{
   margin:0;
@@ -26,10 +34,132 @@ body{
   color:var(--ink);
 }
 
+/* FRONT PAGE */
+.landing{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:30px 20px;
+  color:white;
+  background:
+    radial-gradient(circle at top right,#22a06b 0,transparent 38%),
+    linear-gradient(145deg,#052e16,#166534 55%,#15803d);
+}
+
+.landing-content{
+  width:min(520px,100%);
+}
+
+.landing-brand{
+  display:inline-block;
+  padding:8px 15px;
+  border:1px solid #ffffff40;
+  background:#ffffff12;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+  margin-bottom:25px;
+}
+
+.landing-icon{
+  width:112px;
+  height:112px;
+  border-radius:30px;
+  margin:0 auto 23px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:61px;
+  background:#ffffff18;
+  border:1px solid #ffffff35;
+  box-shadow:0 15px 40px #00000020;
+}
+
+.landing h1{
+  font-size:clamp(32px,8vw,46px);
+  line-height:1.15;
+  margin:0 0 15px;
+  letter-spacing:-1px;
+}
+
+.landing h1 span{
+  color:#bbf7d0;
+}
+
+.landing-description{
+  max-width:430px;
+  margin:0 auto;
+  font-size:15px;
+  line-height:1.8;
+  color:#e1f5e5;
+}
+
+.landing-features{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin:30px 0;
+}
+
+.landing-feature{
+  padding:14px 7px;
+  background:#ffffff12;
+  border:1px solid #ffffff25;
+  border-radius:14px;
+}
+
+.feature-icon{
+  display:block;
+  font-size:24px;
+  margin-bottom:8px;
+}
+
+.landing-feature strong{
+  display:block;
+  font-size:12px;
+}
+
+.landing-feature small{
+  display:block;
+  color:#d1fae5;
+  font-size:10px;
+  margin-top:4px;
+}
+
+.get-started{
+  width:100%;
+  max-width:330px;
+  padding:16px 20px;
+  background:white;
+  color:#166534;
+  border:0;
+  border-radius:14px;
+  font-size:16px;
+  font-weight:850;
+  cursor:pointer;
+  box-shadow:0 8px 25px #00000020;
+}
+
+.get-started:hover{
+  background:#dcfce7;
+}
+
+.landing-note{
+  margin-top:20px;
+  font-size:12px;
+  color:#d1fae5;
+  line-height:1.7;
+}
+
+/* APP HEADER */
 header{
   background:linear-gradient(135deg,#14532d,#15803d);
   color:white;
-  padding:27px 18px 30px;
+  padding:22px 18px 30px;
   text-align:center;
 }
 
@@ -54,6 +184,18 @@ header p{
   font-size:14px;
 }
 
+.back-button{
+  display:block;
+  margin:0 auto 18px;
+  padding:9px 14px;
+  background:#ffffff18;
+  border:1px solid #ffffff55;
+  color:white;
+  border-radius:10px;
+  font-size:13px;
+}
+
+/* LAYOUT */
 .wrap{
   width:min(800px,100%);
   margin:22px auto;
@@ -97,8 +239,14 @@ button,.filebtn{
   transition:transform .15s,opacity .15s;
 }
 
-button:active{transform:scale(.98)}
-button:disabled{opacity:.45;cursor:not-allowed}
+button:active{
+  transform:scale(.98);
+}
+
+button:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
 
 .primary{
   background:var(--green);
@@ -117,6 +265,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
   border:1px solid #fecaca;
 }
 
+/* PHOTO OPTIONS */
 .photo-options{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -148,12 +297,19 @@ button:disabled{opacity:.45;cursor:not-allowed}
 }
 
 .choose-gallery{
-  background:#fff;
+  background:white;
   color:#267c70;
 }
 
-.camera-icon svg{width:65px;height:52px}
-.gallery-icon svg{width:70px;height:58px}
+.camera-icon svg{
+  width:65px;
+  height:52px;
+}
+
+.gallery-icon svg{
+  width:70px;
+  height:58px;
+}
 
 #preview,#camera{
   width:100%;
@@ -184,16 +340,28 @@ button:disabled{opacity:.45;cursor:not-allowed}
   overflow-wrap:anywhere;
 }
 
-.status-pill{
-  display:inline-block;
-  padding:5px 10px;
-  border-radius:30px;
-  font-size:12px;
-  font-weight:800;
-  background:var(--pale);
-  color:var(--green);
+/* MODEL STATUS */
+.model-status{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:12px;
+  font-size:13px;
+  color:var(--muted);
 }
 
+.status-dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#9ca3af;
+  flex-shrink:0;
+}
+
+.status-dot.ready{background:#16a34a}
+.status-dot.error{background:#dc2626}
+
+/* RESULTS */
 .result{
   display:none;
   background:var(--pale);
@@ -273,7 +441,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 }
 
 .prediction-item{
-  background:#fff;
+  background:white;
   border:1px solid var(--line);
   border-radius:11px;
   padding:10px;
@@ -303,7 +471,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 
 .info-box{
   margin-top:14px;
-  background:#fff;
+  background:white;
   border:1px solid #dce8de;
   padding:13px;
   border-radius:12px;
@@ -313,6 +481,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 
 .info-box strong{color:var(--green)}
 
+/* STATISTICS */
 .stats-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -341,6 +510,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
   font-weight:650;
 }
 
+/* HISTORY */
 .history-list{
   display:grid;
   gap:11px;
@@ -351,7 +521,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
   border:1px solid var(--line);
   border-radius:13px;
   padding:13px;
-  background:#fff;
+  background:white;
 }
 
 .history-top{
@@ -409,26 +579,6 @@ button:disabled{opacity:.45;cursor:not-allowed}
   line-height:1.8;
 }
 
-.model-status{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-top:12px;
-  font-size:13px;
-  color:var(--muted);
-}
-
-.status-dot{
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:#9ca3af;
-  flex-shrink:0;
-}
-
-.status-dot.ready{background:#16a34a}
-.status-dot.error{background:#dc2626}
-
 footer{
   text-align:center;
   color:#7a877d;
@@ -441,12 +591,24 @@ footer{
   .actions{grid-template-columns:1fr}
   .card{padding:15px}
   .photo-options{grid-template-columns:1fr 1fr}
-  .photo-option{min-height:125px;padding:12px 5px;font-size:12px}
-  .camera-icon svg{width:53px;height:43px}
-  .gallery-icon svg{width:58px;height:48px}
+  .photo-option{
+    min-height:125px;
+    padding:12px 5px;
+    font-size:12px;
+  }
+  .camera-icon svg{
+    width:53px;
+    height:43px;
+  }
+  .gallery-icon svg{
+    width:58px;
+    height:48px;
+  }
   #prediction{font-size:22px}
   .history-top{flex-direction:column}
   .history-confidence{white-space:normal}
+  .landing-features{gap:6px}
+  .landing-feature{padding:12px 4px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -457,9 +619,65 @@ footer{
 
 <body>
 
+<!-- FRONT PAGE -->
+<section class="landing" id="landingPage">
+  <div class="landing-content">
+
+    <div class="landing-brand">AI • RICE RESEARCH</div>
+
+    <div class="landing-icon" aria-hidden="true">🌾</div>
+
+    <h1>Rice Variety <span>Identifier</span></h1>
+
+    <p class="landing-description">
+      Identify rice varieties using AI image classification.
+      Capture a photo or choose an image from your gallery
+      to explore the predicted rice variety.
+    </p>
+
+    <div class="landing-features">
+      <div class="landing-feature">
+        <span class="feature-icon">📷</span>
+        <strong>Scan Image</strong>
+        <small>Camera or gallery</small>
+      </div>
+
+      <div class="landing-feature">
+        <span class="feature-icon">🤖</span>
+        <strong>AI Prediction</strong>
+        <small>View scan results</small>
+      </div>
+
+      <div class="landing-feature">
+        <span class="feature-icon">📊</span>
+        <strong>Scan History</strong>
+        <small>Previous scans</small>
+      </div>
+    </div>
+
+    <button class="get-started" id="getStarted" type="button">
+      Get Started →
+    </button>
+
+    <div class="landing-note">
+      Educational AI prototype<br>
+      Results depend on the model and image quality.
+    </div>
+
+  </div>
+</section>
+
+<!-- MAIN APPLICATION -->
+<div id="mainApp" hidden>
+
 <header>
+  <button class="back-button" id="backToHome" type="button">
+    ← Back to Home
+  </button>
+
   <div class="brand">AI • Rice Research</div>
   <h1>🌾 Rice Variety Identifier</h1>
+
   <p>
     Capture or upload a rice-grain photo to receive an AI prediction,
     view confidence scores, and review previous scans.
@@ -468,18 +686,20 @@ footer{
 
 <main class="wrap">
 
-<!-- IMAGE SCANNER -->
-<section class="card">
+<!-- SCANNER -->
+<section class="card" id="scannerSection">
   <h2>1. Scan Rice Image</h2>
+
   <p class="sub">
-    Place rice grains on a plain background. Use good lighting and
-    a clear close-up photo for better results.
+    Place rice grains on a plain background. Use good lighting
+    and a clear close-up photo for better results.
   </p>
 
   <div class="photo-options">
 
     <button class="photo-option take-photo"
             id="openCamera" type="button">
+
       <span class="camera-icon">
         <svg viewBox="0 0 64 48" aria-hidden="true">
           <path d="M8 10h11l5-7h16l5 7h11a5 5 0 0 1 5 5v26a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V15a5 5 0 0 1 5-5z"
@@ -489,20 +709,23 @@ footer{
           <circle cx="32" cy="27" r="5" fill="#d9f5ed"/>
         </svg>
       </span>
+
       <span>Take Photo</span>
     </button>
 
     <label class="photo-option choose-gallery" for="fileInput">
+
       <span class="gallery-icon">
         <svg viewBox="0 0 64 54" aria-hidden="true">
           <path d="M10 9 43 3l13 34-33 7z"
                 fill="#b8e8f6" stroke="#4bafa9" stroke-width="2"/>
           <path d="M5 17 39 10l15 34-34 7z"
-                fill="#fff" stroke="#4bafa9" stroke-width="2"/>
+                fill="white" stroke="#4bafa9" stroke-width="2"/>
           <circle cx="28" cy="23" r="4" fill="#f4cc64"/>
           <path d="M9 40 21 29l8 7 8-11 13 15z" fill="#48c6ad"/>
         </svg>
       </span>
+
       <span>Choose from Gallery</span>
     </label>
 
@@ -514,9 +737,11 @@ footer{
 
   <div class="actions" id="cameraActions"
        style="display:none;margin-top:10px">
+
     <button class="primary" id="capture" type="button">
       Capture Photo
     </button>
+
     <button class="secondary" id="stopCamera" type="button">
       Stop Camera
     </button>
@@ -527,12 +752,15 @@ footer{
   <img id="preview" alt="Selected rice sample preview">
 
   <div class="actions" style="margin-top:12px">
+
     <button class="primary" id="analyze" type="button" disabled>
       🔍 Identify Rice Variety
     </button>
+
     <button class="secondary" id="clear" type="button">
       Clear Image
     </button>
+
   </div>
 
   <div class="model-status">
@@ -546,9 +774,11 @@ footer{
 
   <!-- RESULT -->
   <div class="result" id="result" aria-live="polite">
+
     <div class="label" id="resultLabel">SCAN RESULT</div>
 
     <div id="prediction">—</div>
+
     <div id="description"></div>
 
     <div class="confidence-heading">
@@ -569,18 +799,21 @@ footer{
       <div class="prediction-list" id="topPredictions"></div>
     </div>
 
-    <div class="info-box" id="riceInfo" style="display:none"></div>
+    <div class="info-box" id="riceInfo" hidden></div>
+
   </div>
 </section>
 
 <!-- STATISTICS -->
 <section class="card">
   <h2>2. Scan Statistics</h2>
+
   <p class="sub">
     Statistics are calculated from scan results saved on this device.
   </p>
 
   <div class="stats-grid">
+
     <div class="stat-box">
       <div class="stat-number" id="totalScans">0</div>
       <div class="stat-label">Total Scans</div>
@@ -600,18 +833,21 @@ footer{
       <div class="stat-number" id="uncertainScans">0</div>
       <div class="stat-label">Uncertain Results</div>
     </div>
+
   </div>
 </section>
 
 <!-- HISTORY -->
 <section class="card">
   <h2>3. Scan History</h2>
+
   <p class="sub">
     Review previous results saved locally on your device.
     Images are not saved in this history.
   </p>
 
   <div class="actions">
+
     <button class="primary" id="exportHistory" type="button">
       📥 Export CSV
     </button>
@@ -619,6 +855,7 @@ footer{
     <button class="danger" id="clearHistory" type="button">
       Delete All History
     </button>
+
   </div>
 
   <div id="historyList" class="history-list">
@@ -659,13 +896,44 @@ footer{
   <br>Educational prototype
 </footer>
 
+</div>
+
+<!-- AI LIBRARIES -->
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 
 <script>
+"use strict";
+
+/* ========================================
+   FRONT PAGE NAVIGATION
+======================================== */
+
+const landingPage = document.getElementById("landingPage");
+const mainApp = document.getElementById("mainApp");
+
+document.getElementById("getStarted").addEventListener("click",function(){
+  landingPage.hidden = true;
+  mainApp.hidden = false;
+  window.scrollTo(0,0);
+});
+
+document.getElementById("backToHome").addEventListener("click",function(){
+  stopCamera();
+  mainApp.hidden = true;
+  landingPage.hidden = false;
+  window.scrollTo(0,0);
+});
+
 /* ========================================
    MODEL CONFIGURATION
 ======================================== */
+
+/*
+  IMPORTANT:
+  This must be the URL of your actual trained
+  Teachable Machine image model.
+*/
 
 const MODEL_URL =
   "https://teachablemachine.withgoogle.com/models/VC9SEHpvc/";
@@ -683,6 +951,7 @@ const resultEl = document.getElementById("result");
 const cameraActions = document.getElementById("cameraActions");
 
 let model = null;
+let modelPromise = null;
 let imageReady = false;
 let stream = null;
 let busy = false;
@@ -696,7 +965,7 @@ function setStatus(message){
   statusEl.textContent = message;
 }
 
-function setModelStatus(message, type){
+function setModelStatus(message,type){
   document.getElementById("modelStatus").textContent = message;
 
   const dot = document.getElementById("modelDot");
@@ -721,11 +990,11 @@ function safePercent(value){
     return 0;
   }
 
-  return Math.max(0, Math.min(100, number * 100));
+  return Math.max(0,Math.min(100,number*100));
 }
 
 function formatPercent(value){
-  return safePercent(value).toFixed(1) + "%";
+  return safePercent(value).toFixed(1)+"%";
 }
 
 /* ========================================
@@ -743,7 +1012,7 @@ function showImage(src){
     if(currentVersion !== imageVersion) return;
 
     imageReady = true;
-    analyzeBtn.disabled = false;
+    analyzeBtn.disabled = busy;
 
     setStatus(
       "Image ready. Tap Identify Rice Variety to analyze it."
@@ -769,7 +1038,7 @@ function showImage(src){
    IMAGE UPLOAD
 ======================================== */
 
-fileInput.addEventListener("change", function(event){
+fileInput.addEventListener("change",function(event){
   const file = event.target.files && event.target.files[0];
 
   if(!file) return;
@@ -780,7 +1049,7 @@ fileInput.addEventListener("change", function(event){
     return;
   }
 
-  if(file.size > 12 * 1024 * 1024){
+  if(file.size > 12*1024*1024){
     setStatus("Please choose an image smaller than 12 MB.");
     fileInput.value = "";
     return;
@@ -792,7 +1061,11 @@ fileInput.addEventListener("change", function(event){
   const reader = new FileReader();
 
   reader.onload = function(){
-    showImage(reader.result);
+    if(typeof reader.result === "string"){
+      showImage(reader.result);
+    }else{
+      setStatus("Could not read that image. Try another file.");
+    }
   };
 
   reader.onerror = function(){
@@ -814,7 +1087,7 @@ document.getElementById("openCamera").addEventListener(
        !navigator.mediaDevices.getUserMedia){
 
       setStatus(
-        "Camera access is unavailable. Use HTTPS or upload an image."
+        "Camera access is unavailable. Open this page using HTTPS or upload an image."
       );
       return;
     }
@@ -841,7 +1114,7 @@ document.getElementById("openCamera").addEventListener(
       );
 
     }catch(error){
-      console.error(error);
+      console.error("Camera error:",error);
       stopCamera();
 
       setStatus(
@@ -890,10 +1163,10 @@ document.getElementById("capture").addEventListener(
     }
 
     const maxWidth = 1000;
-    const scale = Math.min(1, maxWidth / video.videoWidth);
+    const scale = Math.min(1,maxWidth/video.videoWidth);
 
-    canvas.width = Math.round(video.videoWidth * scale);
-    canvas.height = Math.round(video.videoHeight * scale);
+    canvas.width = Math.round(video.videoWidth*scale);
+    canvas.height = Math.round(video.videoHeight*scale);
 
     const context = canvas.getContext("2d");
 
@@ -903,10 +1176,10 @@ document.getElementById("capture").addEventListener(
     }
 
     context.drawImage(
-      video, 0, 0, canvas.width, canvas.height
+      video,0,0,canvas.width,canvas.height
     );
 
-    const photo = canvas.toDataURL("image/jpeg", 0.82);
+    const photo = canvas.toDataURL("image/jpeg",0.82);
 
     stopCamera();
     showImage(photo);
@@ -914,32 +1187,49 @@ document.getElementById("capture").addEventListener(
 );
 
 /* ========================================
-   LOAD TEACHABLE MACHINE MODEL
+   LOAD AI MODEL
 ======================================== */
 
 async function loadModel(){
   if(model) return model;
 
-  if(typeof tmImage === "undefined"){
-    throw new Error(
-      "AI libraries could not load. Check your internet connection."
+  if(modelPromise) return modelPromise;
+
+  modelPromise = (async function(){
+
+    if(typeof tmImage === "undefined"){
+      throw new Error(
+        "AI libraries could not load. Check your internet connection and reload the page."
+      );
+    }
+
+    if(!MODEL_URL || !MODEL_URL.trim()){
+      throw new Error("MODEL_NOT_SET");
+    }
+
+    setModelStatus("Loading AI model...","");
+
+    const loadedModel = await tmImage.load(
+      MODEL_URL+"model.json",
+      MODEL_URL+"metadata.json"
     );
+
+    model = loadedModel;
+
+    setModelStatus("AI model loaded successfully.","ready");
+
+    return model;
+
+  })();
+
+  try{
+    return await modelPromise;
+  }catch(error){
+    modelPromise = null;
+    model = null;
+    setModelStatus("AI model could not be loaded.","error");
+    throw error;
   }
-
-  if(!MODEL_URL || !MODEL_URL.trim()){
-    throw new Error("MODEL_NOT_SET");
-  }
-
-  setModelStatus("Loading AI model...", "");
-
-  model = await tmImage.load(
-    MODEL_URL + "model.json",
-    MODEL_URL + "metadata.json"
-  );
-
-  setModelStatus("AI model loaded successfully.", "ready");
-
-  return model;
 }
 
 /* ========================================
@@ -947,11 +1237,11 @@ async function loadModel(){
 ======================================== */
 
 function normalizeClassName(className){
-  return String(className || "")
+  return String(className||"")
     .trim()
     .toLowerCase()
-    .replace(/[_-]+/g, " ")
-    .replace(/\s+/g, " ");
+    .replace(/[_-]+/g," ")
+    .replace(/\s+/g," ");
 }
 
 function isNonRiceClass(className){
@@ -961,12 +1251,15 @@ function isNonRiceClass(className){
     "non rice",
     "nonrice",
     "not rice",
+    "none rice",
+    "none",
     "invalid",
     "other",
     "not rice grains",
     "background",
     "non rice image",
-    "non rice object"
+    "non rice object",
+    "non rice class"
   ];
 
   return invalidNames.includes(name);
@@ -977,7 +1270,7 @@ function isRiceClass(className){
 }
 
 /* ========================================
-   RICE VARIETY INFORMATION
+   RICE INFORMATION
 ======================================== */
 
 function getRiceInformation(className){
@@ -988,8 +1281,7 @@ function getRiceInformation(className){
       title:"Jasmine Rice",
       description:
         "Jasmine rice is known for its characteristic aroma and soft texture when cooked.",
-      shape:
-        "Generally slender grains.",
+      shape:"Generally slender grains.",
       note:
         "Appearance and cooking properties may vary by cultivar and processing."
     };
@@ -1000,22 +1292,29 @@ function getRiceInformation(className){
       title:"Basmati Rice",
       description:
         "Basmati rice is an aromatic rice commonly associated with long, slender grains.",
-      shape:
-        "Typically long and slender.",
-      note:
-        "Grain length and appearance vary between samples."
+      shape:"Typically long and slender.",
+      note:"Grain length and appearance vary between samples."
     };
   }
 
-  if(name.includes("japonica")){
+  if(name.includes("japonica") || name.includes("jabonica")){
     return {
       title:"Japonica Rice",
       description:
         "Japonica rice varieties commonly have shorter, rounder grains than many Indica varieties.",
-      shape:
-        "Often short or medium grain.",
+      shape:"Often short or medium grain.",
+      note:"The exact grain shape depends on the cultivar."
+    };
+  }
+
+  if(name.includes("masbati")){
+    return {
+      title:"Masbati Rice",
+      description:
+        "The AI model identified this sample as Masbati rice based on its training data.",
+      shape:"Compare the sample with verified reference grains.",
       note:
-        "The exact grain shape depends on the cultivar."
+        "Visual identification may not reliably distinguish similar rice varieties."
     };
   }
 
@@ -1024,10 +1323,8 @@ function getRiceInformation(className){
       title:"Indica Rice",
       description:
         "Indica is a broad group of rice varieties commonly associated with slender grains.",
-      shape:
-        "Often long and slender.",
-      note:
-        "Not every Indica variety has identical grain characteristics."
+      shape:"Often long and slender.",
+      note:"Not every Indica variety has identical grain characteristics."
     };
   }
 
@@ -1036,10 +1333,8 @@ function getRiceInformation(className){
       title:"Brown Rice",
       description:
         "Brown rice retains its bran layer and is generally chewier than polished white rice.",
-      shape:
-        "Depends on the original rice variety.",
-      note:
-        "Brown rice describes a processing state rather than one specific variety."
+      shape:"Depends on the original rice variety.",
+      note:"Brown rice describes a processing state rather than one specific variety."
     };
   }
 
@@ -1048,10 +1343,8 @@ function getRiceInformation(className){
       title:"Glutinous Rice",
       description:
         "Glutinous rice becomes sticky when cooked and is commonly used for rice cakes and desserts.",
-      shape:
-        "Often short or medium grain.",
-      note:
-        "Glutinous rice is also known as sticky rice."
+      shape:"Often short or medium grain.",
+      note:"Glutinous rice is also known as sticky rice."
     };
   }
 
@@ -1060,34 +1353,8 @@ function getRiceInformation(className){
       title:"White Rice",
       description:
         "White rice has had its bran and germ removed during milling.",
-      shape:
-        "Depends on the original rice variety.",
-      note:
-        "White rice is a processing category, not a single variety."
-    };
-  }
-
-  if(name.includes("dinorado")){
-    return {
-      title:"Dinorado Rice",
-      description:
-        "Dinorado is a rice variety commonly consumed in the Philippines and often associated with aroma and a soft cooked texture.",
-      shape:
-        "Appearance can vary between samples.",
-      note:
-        "Confirm the variety using a trusted labeled sample."
-    };
-  }
-
-  if(name.includes("sinandomeng")){
-    return {
-      title:"Sinandomeng Rice",
-      description:
-        "Sinandomeng is a familiar rice name in the Philippine market.",
-      shape:
-        "Appearance depends on the specific product and processing.",
-      note:
-        "Visual identification alone may not distinguish similar varieties."
+      shape:"Depends on the original rice variety.",
+      note:"White rice is a processing category, not a single variety."
     };
   }
 
@@ -1095,15 +1362,14 @@ function getRiceInformation(className){
     title:String(className),
     description:
       "The AI model predicted this class based on its training data.",
-    shape:
-      "Refer to a verified reference sample for grain characteristics.",
+    shape:"Compare with verified reference samples.",
     note:
-      "This description is general. Verify the variety before relying on the result."
+      "Verify the variety before relying on the result."
   };
 }
 
 /* ========================================
-   LOCAL SCAN HISTORY
+   LOCAL HISTORY
 ======================================== */
 
 function getHistory(){
@@ -1114,10 +1380,10 @@ function getHistory(){
 
     const data = JSON.parse(raw);
 
-    return Array.isArray(data) ? data : [];
+    return Array.isArray(data)?data:[];
 
   }catch(error){
-    console.error("Could not read history:", error);
+    console.error("Could not read history:",error);
     return [];
   }
 }
@@ -1132,10 +1398,10 @@ function saveHistory(history){
     return true;
 
   }catch(error){
-    console.error("Could not save history:", error);
+    console.error("Could not save history:",error);
 
     setStatus(
-      "Result generated, but scan history could not be saved. Check your browser storage."
+      "Result generated, but history could not be saved. Check browser storage."
     );
 
     return false;
@@ -1147,10 +1413,8 @@ function addHistory(record){
 
   history.unshift(record);
 
-  // Keep the latest 200 records.
-  const limitedHistory = history.slice(0, 200);
+  saveHistory(history.slice(0,200));
 
-  saveHistory(limitedHistory);
   renderHistory();
   renderStatistics();
 }
@@ -1163,15 +1427,15 @@ function renderStatistics(){
   const history = getHistory();
 
   const valid = history.filter(function(item){
-    return item.status === "valid";
+    return item.status==="valid";
   }).length;
 
   const invalid = history.filter(function(item){
-    return item.status === "invalid";
+    return item.status==="invalid";
   }).length;
 
   const uncertain = history.filter(function(item){
-    return item.status === "uncertain";
+    return item.status==="uncertain";
   }).length;
 
   document.getElementById("totalScans").textContent =
@@ -1197,7 +1461,7 @@ function renderHistory(){
 
   container.replaceChildren();
 
-  if(history.length === 0){
+  if(history.length===0){
     const empty = document.createElement("div");
 
     empty.className = "empty-state";
@@ -1219,7 +1483,7 @@ function renderHistory(){
 
     const name = document.createElement("div");
     name.className = "history-name";
-    name.textContent = item.prediction || "Unknown result";
+    name.textContent = item.prediction||"Unknown result";
 
     const date = document.createElement("div");
     date.className = "history-date";
@@ -1227,7 +1491,7 @@ function renderHistory(){
     const parsedDate = new Date(item.date);
 
     date.textContent = Number.isNaN(parsedDate.getTime())
-      ? String(item.date || "Unknown date")
+      ? String(item.date||"Unknown date")
       : parsedDate.toLocaleString();
 
     details.appendChild(name);
@@ -1237,9 +1501,9 @@ function renderHistory(){
     confidence.className = "history-confidence";
 
     confidence.textContent =
-      item.status === "invalid"
+      item.status==="invalid"
         ? "Non-Rice"
-        : item.status === "uncertain"
+        : item.status==="uncertain"
           ? "Uncertain"
           : formatPercent(item.confidence);
 
@@ -1254,7 +1518,7 @@ function renderHistory(){
     deleteBtn.type = "button";
     deleteBtn.textContent = "Delete";
 
-    deleteBtn.addEventListener("click", function(){
+    deleteBtn.addEventListener("click",function(){
       deleteHistoryItem(item.id);
     });
 
@@ -1269,10 +1533,11 @@ function renderHistory(){
 
 function deleteHistoryItem(id){
   const history = getHistory().filter(function(item){
-    return item.id !== id;
+    return item.id!==id;
   });
 
   saveHistory(history);
+
   renderHistory();
   renderStatistics();
 }
@@ -1282,33 +1547,28 @@ function deleteHistoryItem(id){
 ======================================== */
 
 function csvEscape(value){
-  let text = String(value == null ? "" : value);
+  let text = String(value==null?"":value);
 
-  // Prevent spreadsheet formula injection.
   if(/^[\s]*[=+\-@]/.test(text)){
-    text = "'" + text;
+    text = "'"+text;
   }
 
-  return '"' + text.replace(/"/g, '""') + '"';
+  return '"'+text.replace(/"/g,'""')+'"';
 }
 
 document.getElementById("exportHistory").addEventListener(
   "click",
   function(){
+
     const history = getHistory();
 
-    if(history.length === 0){
+    if(history.length===0){
       alert("No scan history to export yet.");
       return;
     }
 
     const rows = [
-      [
-        "Date",
-        "Prediction",
-        "Confidence",
-        "Status"
-      ]
+      ["Date","Prediction","Confidence","Status"]
     ];
 
     history.forEach(function(item){
@@ -1325,7 +1585,7 @@ document.getElementById("exportHistory").addEventListener(
     }).join("\r\n");
 
     const blob = new Blob(
-      ["\uFEFF" + csv],
+      ["\uFEFF"+csv],
       {type:"text/csv;charset=utf-8;"}
     );
 
@@ -1341,7 +1601,7 @@ document.getElementById("exportHistory").addEventListener(
 
     setTimeout(function(){
       URL.revokeObjectURL(url);
-    }, 1000);
+    },1000);
   }
 );
 
@@ -1352,9 +1612,10 @@ document.getElementById("exportHistory").addEventListener(
 document.getElementById("clearHistory").addEventListener(
   "click",
   function(){
+
     const history = getHistory();
 
-    if(history.length === 0){
+    if(history.length===0){
       alert("There is no scan history to delete.");
       return;
     }
@@ -1381,10 +1642,10 @@ function showConfidence(probability){
   const percent = safePercent(probability);
 
   document.getElementById("confidenceText").textContent =
-    percent.toFixed(1) + "%";
+    percent.toFixed(1)+"%";
 
   document.getElementById("confidenceBar").style.width =
-    percent + "%";
+    percent+"%";
 
   document.getElementById("confidenceNote").textContent =
     "This percentage represents the model's confidence score, not a verified accuracy rate.";
@@ -1399,9 +1660,9 @@ function showTopPredictions(predictions){
     .filter(function(item){
       return isRiceClass(item.className);
     })
-    .slice(0, 3);
+    .slice(0,3);
 
-  if(topThree.length === 0){
+  if(topThree.length===0){
     const empty = document.createElement("div");
 
     empty.className = "empty-state";
@@ -1411,7 +1672,7 @@ function showTopPredictions(predictions){
     return;
   }
 
-  topThree.forEach(function(item, index){
+  topThree.forEach(function(item,index){
     const row = document.createElement("div");
     row.className = "prediction-item";
 
@@ -1419,8 +1680,7 @@ function showTopPredictions(predictions){
     heading.className = "prediction-row";
 
     const name = document.createElement("span");
-    name.textContent =
-      (index + 1) + ". " + item.className;
+    name.textContent = (index+1)+". "+item.className;
 
     const percent = document.createElement("span");
     percent.textContent = formatPercent(item.probability);
@@ -1433,10 +1693,9 @@ function showTopPredictions(predictions){
 
     const fill = document.createElement("div");
     fill.className = "small-fill";
-    fill.style.width = safePercent(item.probability) + "%";
+    fill.style.width = safePercent(item.probability)+"%";
 
     track.appendChild(fill);
-
     row.appendChild(heading);
     row.appendChild(track);
 
@@ -1458,7 +1717,7 @@ function showRiceInformation(className){
   description.style.margin = "8px 0";
 
   const shape = document.createElement("p");
-  shape.textContent = "Grain appearance: " + info.shape;
+  shape.textContent = "Grain appearance: "+info.shape;
   shape.style.margin = "8px 0";
 
   const note = document.createElement("p");
@@ -1470,10 +1729,10 @@ function showRiceInformation(className){
   box.appendChild(shape);
   box.appendChild(note);
 
-  box.style.display = "block";
+  box.hidden = false;
 }
 
-function displayResult(type, prediction, probability, predictions){
+function displayResult(type,prediction,probability,predictions){
   const predictionEl = document.getElementById("prediction");
   const descriptionEl = document.getElementById("description");
   const labelEl = document.getElementById("resultLabel");
@@ -1483,9 +1742,9 @@ function displayResult(type, prediction, probability, predictions){
   resultEl.style.display = "block";
   resultEl.className = "result";
 
-  infoBox.style.display = "none";
+  infoBox.hidden = true;
 
-  if(type === "invalid"){
+  if(type==="invalid"){
     resultEl.classList.add("invalid");
 
     labelEl.textContent = "INVALID IMAGE";
@@ -1498,7 +1757,7 @@ function displayResult(type, prediction, probability, predictions){
 
     topSection.style.display = "none";
 
-  }else if(type === "uncertain"){
+  }else if(type==="uncertain"){
     resultEl.classList.add("uncertain");
 
     labelEl.textContent = "UNCERTAIN RESULT";
@@ -1522,8 +1781,8 @@ function displayResult(type, prediction, probability, predictions){
     showConfidence(probability);
 
     topSection.style.display = "block";
-    showTopPredictions(predictions);
 
+    showTopPredictions(predictions);
     showRiceInformation(prediction);
   }
 }
@@ -1532,26 +1791,30 @@ function displayResult(type, prediction, probability, predictions){
    ANALYZE IMAGE
 ======================================== */
 
-analyzeBtn.addEventListener("click", async function(){
-  if(!imageReady || busy) return;
+analyzeBtn.addEventListener("click",async function(){
+
+  if(!imageReady||busy) return;
 
   busy = true;
   analyzeBtn.disabled = true;
+
   hideResult();
 
   try{
+    setStatus("Loading AI model...");
+
     const loadedModel = await loadModel();
 
     setStatus("Analyzing image...");
 
-    const predictions = await loadedModel.predict(preview, false);
+    const predictions = await loadedModel.predict(preview,false);
 
-    if(!predictions || predictions.length === 0){
+    if(!predictions||predictions.length===0){
       throw new Error("The model returned no classes.");
     }
 
-    predictions.sort(function(a, b){
-      return b.probability - a.probability;
+    predictions.sort(function(a,b){
+      return b.probability-a.probability;
     });
 
     const best = predictions[0];
@@ -1564,13 +1827,12 @@ analyzeBtn.addEventListener("click", async function(){
     let resultName;
 
     /*
-      Reject when Non-Rice is the strongest prediction.
-      The model must contain a trained Non-Rice class
-      for this check to work.
+      Non-Rice detection works only if the trained
+      model actually contains the None Rice class.
     */
 
     if(nonRicePrediction &&
-       best.className === nonRicePrediction.className){
+       isNonRiceClass(best.className)){
 
       type = "invalid";
       resultName = "Non-Rice Image";
@@ -1586,7 +1848,7 @@ analyzeBtn.addEventListener("click", async function(){
         "Non-Rice class predicted. Please upload a supported rice image."
       );
 
-    }else if(best.probability < CONFIDENCE_THRESHOLD){
+    }else if(best.probability<CONFIDENCE_THRESHOLD){
 
       type = "uncertain";
       resultName = "Low Confidence";
@@ -1598,9 +1860,7 @@ analyzeBtn.addEventListener("click", async function(){
         predictions
       );
 
-      setStatus(
-        "Uncertain result. Try another clear image."
-      );
+      setStatus("Uncertain result. Try another clear image.");
 
     }else{
 
@@ -1620,8 +1880,8 @@ analyzeBtn.addEventListener("click", async function(){
     }
 
     addHistory({
-      id:Date.now().toString() + "-" +
-         Math.random().toString(36).slice(2, 8),
+      id:Date.now().toString()+"-"+
+         Math.random().toString(36).slice(2,8),
       date:new Date().toISOString(),
       prediction:resultName,
       confidence:best.probability,
@@ -1629,20 +1889,20 @@ analyzeBtn.addEventListener("click", async function(){
     });
 
   }catch(error){
-    console.error("Rice identification error:", error);
+    console.error("Rice identification error:",error);
 
-    if(error.message === "MODEL_NOT_SET"){
+    if(error.message==="MODEL_NOT_SET"){
       setStatus(
-        "The AI model is not connected. Enter the correct Teachable Machine model URL."
+        "The AI model is not connected. Enter your correct Teachable Machine model URL."
       );
     }else{
       setStatus(
-        "Could not run the AI model. Check your internet connection and model URL. " +
-        (error.message || "Unknown error")
+        "AI model failed. Check your internet connection and model URL. "+
+        (error.message||"Unknown error")
       );
     }
 
-    setModelStatus("Model loading or prediction failed.", "error");
+    setModelStatus("Model loading or prediction failed.","error");
 
   }finally{
     busy = false;
@@ -1657,7 +1917,9 @@ analyzeBtn.addEventListener("click", async function(){
 document.getElementById("clear").addEventListener(
   "click",
   function(){
+
     imageVersion++;
+
     stopCamera();
 
     fileInput.value = "";
@@ -1684,8 +1946,8 @@ document.getElementById("clear").addEventListener(
 renderStatistics();
 renderHistory();
 
-window.addEventListener("beforeunload", stopCamera);
-</script>
+window.addEventListener("beforeunload",stopCamera);
 
+</script>
 </body>
 </html>
