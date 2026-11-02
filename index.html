@@ -929,12 +929,6 @@ document.getElementById("backToHome").addEventListener("click",function(){
    MODEL CONFIGURATION
 ======================================== */
 
-/*
-  IMPORTANT:
-  This must be the URL of your actual trained
-  Teachable Machine image model.
-*/
-
 const MODEL_URL =
   "https://teachablemachine.withgoogle.com/models/VC9SEHpvc/";
 
@@ -1276,95 +1270,92 @@ function isRiceClass(className){
 function getRiceInformation(className){
   const name = normalizeClassName(className);
 
+  if(name.includes("brown rice") || name.includes("brown")){
+    return {
+      title: "Brown Rice",
+      description: "Brown rice is a whole grain product where only the outermost hull is removed, leaving the nutrient-dense bran and germ layers intact. It offers a nutty flavor, chewy texture, and superior fiber content.",
+      shape: "Varies from medium to long depending on the base variety, distinguished by its light tan or brownish hue.",
+      note: "Requires longer cooking times and extra water compared to white rice due to the protective bran layer."
+    };
+  }
+
+  if(name.includes("black rice") || name.includes("black")){
+    return {
+      title: "Black Rice",
+      description: "Black rice, historically known as 'forbidden rice', is a nutrient-rich ancient grain packed with antioxidants (anthocyanins). When cooked, it turns a deep dark purple and develops a slightly sweet, nutty flavor.",
+      shape: "Medium-length plump grains with a distinct dark blackish-purple coloration.",
+      note: "Turns sticky and chewy when cooked, making it excellent for porridges, desserts, and vibrant bowls."
+    };
+  }
+
+  if(name.includes("red rice") || name.includes("red")){
+    return {
+      title: "Red Rice",
+      description: "Red rice gets its striking color from high concentrations of iron and antioxidants found in its bran layer. It possesses a nutty earthy flavor profile and a satisfying firm, chewy texture.",
+      shape: "Medium to long slender grains coated in a reddish-brown bran layer.",
+      note: "Retains its shape well after cooking; popular in traditional and health-conscious recipes."
+    };
+  }
+
   if(name.includes("jasmine")){
     return {
-      title:"Jasmine Rice",
-      description:
-        "Jasmine rice is known for its characteristic aroma and soft texture when cooked.",
-      shape:"Generally slender grains.",
-      note:
-        "Appearance and cooking properties may vary by cultivar and processing."
+      title: "Jasmine Rice",
+      description: "Jasmine rice is a premium long-grain variety famous for its distinct floral aroma, delicate subtle sweetness, and slightly sticky texture when cooked. It absorbs flavors wonderfully, making it ideal for stir-fries, curries, and daily dining.",
+      shape: "Slender, elongated grains with a smooth, slightly translucent appearance.",
+      note: "Fluffs up nicely with separate grains if cooked with the correct water ratio. Appearance and aroma can vary slightly by milling degree."
     };
   }
 
   if(name.includes("basmati")){
     return {
-      title:"Basmati Rice",
-      description:
-        "Basmati rice is an aromatic rice commonly associated with long, slender grains.",
-      shape:"Typically long and slender.",
-      note:"Grain length and appearance vary between samples."
+      title: "Basmati Rice",
+      description: "Basmati rice is an aromatic long-grain variety traditionally grown in the Himalayan foothills. It is renowned for expanding significantly in length during cooking while remaining exceptionally fluffy, distinct, and non-sticky.",
+      shape: "Extra-long, slender grains that taper gently at both ends.",
+      note: "Best soaked for 20-30 minutes before cooking to achieve maximum elongation and absorb rich spices in biryanis and pilafs."
     };
   }
 
   if(name.includes("japonica") || name.includes("jabonica")){
     return {
-      title:"Japonica Rice",
-      description:
-        "Japonica rice varieties commonly have shorter, rounder grains than many Indica varieties.",
-      shape:"Often short or medium grain.",
-      note:"The exact grain shape depends on the cultivar."
-    };
-  }
-
-  if(name.includes("masbati")){
-    return {
-      title:"Masbati Rice",
-      description:
-        "The AI model identified this sample as Masbati rice based on its training data.",
-      shape:"Compare the sample with verified reference grains.",
-      note:
-        "Visual identification may not reliably distinguish similar rice varieties."
+      title: "Japonica Rice",
+      description: "Japonica rice consists of shorter, plumper grains with higher moisture and starch content (specifically amylopectin), resulting in a moist, tender, and distinctly clingy texture when cooked.",
+      shape: "Short to medium-length grains with a rounded, plump profile.",
+      note: "Essential for sushi, grain bowls, and traditional East Asian meals due to its ability to hold shape while sticking together easily."
     };
   }
 
   if(name.includes("indica")){
     return {
-      title:"Indica Rice",
-      description:
-        "Indica is a broad group of rice varieties commonly associated with slender grains.",
-      shape:"Often long and slender.",
-      note:"Not every Indica variety has identical grain characteristics."
-    };
-  }
-
-  if(name.includes("brown")){
-    return {
-      title:"Brown Rice",
-      description:
-        "Brown rice retains its bran layer and is generally chewier than polished white rice.",
-      shape:"Depends on the original rice variety.",
-      note:"Brown rice describes a processing state rather than one specific variety."
+      title: "Indica Rice",
+      description: "Indica rice represents the major tropical and subtropical subspecies of cultivated rice. The grains are characterized by higher amylose content, which ensures they remain firm, separate, and non-sticky after cooking.",
+      shape: "Typically long, slender, and slightly flattened or cylindrical grains.",
+      note: "Forms the bulk of global table rice consumption; highly favored where fluffy, separate grains are preferred."
     };
   }
 
   if(name.includes("glutinous") || name.includes("sticky")){
     return {
-      title:"Glutinous Rice",
-      description:
-        "Glutinous rice becomes sticky when cooked and is commonly used for rice cakes and desserts.",
-      shape:"Often short or medium grain.",
-      note:"Glutinous rice is also known as sticky rice."
+      title: "Glutinous Rice",
+      description: "Also known as sticky rice or sweet rice, this variety contains virtually zero amylose and high amylopectin, causing the grains to bind together into a dense, gluey, and chewy texture when steamed.",
+      shape: "Opaque, short, rounded grains that often turn glossy white when cooked.",
+      note: "Extensively used in traditional sweets, rice cakes, and savory sticky rice dishes across various cultures."
     };
   }
 
   if(name.includes("white")){
     return {
-      title:"White Rice",
-      description:
-        "White rice has had its bran and germ removed during milling.",
-      shape:"Depends on the original rice variety.",
-      note:"White rice is a processing category, not a single variety."
+      title: "White Rice",
+      description: "White rice has undergone a milling process where the bran and germ layers are completely removed, leaving a starchy endosperm that cooks quickly and offers a neutral flavor profile.",
+      shape: "Varies depending on the original grain source, polished to a clean, bright white appearance.",
+      note: "Classifies a milled processing state rather than a singular botanical variety."
     };
   }
 
   return {
-    title:String(className),
-    description:
-      "The AI model predicted this class based on its training data.",
-    shape:"Compare with verified reference samples.",
-    note:
-      "Verify the variety before relying on the result."
+    title: String(className),
+    description: "The AI model predicted this specific class based on learned visual features from training samples. It exhibits typical structural grain traits associated with this category.",
+    shape: "Examine grain length, width, and translucency against physical reference standards.",
+    note: "Always verify the grain variety through physical inspection and agricultural standards before making critical decisions."
   };
 }
 
@@ -1825,11 +1816,6 @@ analyzeBtn.addEventListener("click",async function(){
 
     let type;
     let resultName;
-
-    /*
-      Non-Rice detection works only if the trained
-      model actually contains the None Rice class.
-    */
 
     if(nonRicePrediction &&
        isNonRiceClass(best.className)){
